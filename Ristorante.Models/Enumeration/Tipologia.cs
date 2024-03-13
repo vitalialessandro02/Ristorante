@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Ristorante.Models.Enumeration
 {
     public enum Tipologia
-    {   Primo,
-        Secondo,
-        Contorno,
-        Dolce
+    {   Primo = 1,
+        Secondo = 2,
+        Contorno = 3,
+        Dolce = 4
     }
 }

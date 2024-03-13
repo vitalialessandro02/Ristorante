@@ -8,7 +8,7 @@ namespace Ristorante.Models.Enumeration
 {
     public enum Ruolo
     {
-        Cliente=1,
-        Amministratore=2
+        Cliente = 1,
+        Amministratore = 2
     }
 }

@@ -11,8 +11,8 @@ namespace Ristorante.Models.Entities
     {
         public int Id { get; set; }
         public string Nome { get; set; } = string.Empty;
-        public float Prezzo {  get; set; }
-        public Tipologia Tipologia { get; set; }
+        public double Prezzo {  get; set; }
+        public Tipologia TipologiaPortata { get; set; }
         
     }
 }

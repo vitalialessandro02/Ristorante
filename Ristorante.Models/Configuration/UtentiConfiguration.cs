@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ristorante.Models.Configuration
 {
-    public class UtentiConfiguration
+    public class UtentiConfiguration : IEntityTypeConfiguration<Utente>
     {
 
         public void Configure(EntityTypeBuilder<Utente> builder)
@@ -24,10 +24,7 @@ namespace Ristorante.Models.Configuration
               .HasMaxLength(50);
             builder.Property(p => p.Password)
               .HasMaxLength(50);
-          
-
-
-            builder.Property(p => p.Ruolo)
+            builder.Property(p => p.RuoloUtente)
                 .HasColumnName("Ruolo")
                 .HasConversion<int>();
         }

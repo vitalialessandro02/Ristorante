@@ -18,7 +18,7 @@ namespace Ristorante.Models.Entities
 
         public virtual ICollection< Ordine> Ordini { get; set; }
 
-        public Ruolo Ruolo { get; set; }
+        public Ruolo RuoloUtente { get; set; }
 
     }
 }

@@ -9,12 +9,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ristorante.Models.Configuration
 {
-    public class OrdiniConfiguration
+    public class OrdiniConfiguration : IEntityTypeConfiguration<Ordine>
     {
         public void Configure(EntityTypeBuilder<Ordine> builder)
         {
-            builder.ToTable("Ordine");
-            builder.HasKey(p => p.NumeroOrdine);
+            builder.ToTable("Ordini");
+            builder.HasKey(p => p.IdOrdine);
             builder.Property(p => p.IdUtente);
 
             

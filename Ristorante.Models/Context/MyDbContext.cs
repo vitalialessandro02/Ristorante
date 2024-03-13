@@ -40,8 +40,6 @@ namespace Ristorante.Models.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
-            
             modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
             base.OnModelCreating(modelBuilder);
         }

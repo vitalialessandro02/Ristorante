@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace Ristorante.Models.Configuration
 {
-    public class PortataConfiguration
+    public class PortateConfiguration : IEntityTypeConfiguration<Portata>
     {
         public void Configure(EntityTypeBuilder<Portata> builder)
         {
-            builder.ToTable("Portata");
+            builder.ToTable("Portate");
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Nome)
                 .HasMaxLength(50);
             builder.Property(p => p.Prezzo);
  
-            builder.Property(p => p.Tipologia)
+            builder.Property(p => p.TipologiaPortata)
                     .HasColumnName("Tipologia")
                     .HasConversion<int>();
 

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Ristorante.Models.Context;
 
-namespace Unicam.Paradigmi.Models.Extensions
+namespace Ristorante.Models.Extensions
 {
     public static class ServiceExtension
     {
-        public static IServiceCollection AddModelServices(this IServiceCollection services, IConfiguration configuration)
+        /*public static IServiceCollection AddModelServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<MyDbContext>(conf =>
             {
@@ -22,6 +22,6 @@ namespace Unicam.Paradigmi.Models.Extensions
 
             services.AddScoped<AziendaRepository>();
             return services;
-        }
+        }*/
     }
 }
