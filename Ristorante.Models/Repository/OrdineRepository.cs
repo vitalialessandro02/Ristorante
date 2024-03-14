@@ -2,6 +2,7 @@
 using Ristorante.Models.Entities;
 using Ristorante.Models.Enumeration;
 using Ristorante.Models.Repositories;
+using Ristorante.Models.Views;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,21 +19,26 @@ namespace Ristorante.Models.Repository
         
         }
 
-        public List<Ordine> GetOrdine(int from, int num, out int totalNum,DateTime dataInizio, DateTime dataFine, int? idUtente)
+        public List<Ordine> GetOrdine(int from, int num, out int totalNum,DateTime dataInizio, DateTime dataFine, int idUtente)
         {
-            var query = _ctx.Ordini.AsQueryable();
-
-            if(idUtente.HasValue)
+            var queryOrdine = _ctx.Ordini.AsQueryable();
+            var queryUtente = _ctx.Utenti.AsQueryable();
+            var ruolo = queryUtente.Where(w => w.Id.Equals(idUtente)).Select(w => w.RuoloUtente).FirstOrDefault();
+            
+            if(ruolo.Equals(Ruolo.Cliente))
             {
-                query = query.Where(w => w.IdOrdine.Equals(idUtente));
+                queryOrdine = queryOrdine.Where(w => (w.DataOrdine >= dataInizio) && 
+                (w.DataOrdine <= dataFine) && (w.IdUtente.Equals(idUtente)));
+            } 
+            else
+            {
+                queryOrdine = queryOrdine.Where(w => (w.DataOrdine >= dataInizio) && (w.DataOrdine <= dataFine));
             }
 
-            query = query.Where(w => (w.DataOrdine >= dataInizio) && (w.DataOrdine <= dataFine));
-
-            totalNum = query.Count();
+            totalNum = queryOrdine.Count();
 
             return
-                query
+                queryOrdine
                  .OrderBy(o => o.DataOrdine)
                  .Skip(from)
                  .Take(num)
@@ -40,7 +46,7 @@ namespace Ristorante.Models.Repository
 
         }
 
-        public List<Portata> GetPortateByIdOrdine(int from, int num, out int totalNum, int idOrdine)
+        public List<PortataConInfo> GetPortateByIdOrdine(int from, int num, out int totalNum, int idOrdine)
         {
             var portate = _ctx.Portate.AsQueryable();
              
@@ -50,12 +56,26 @@ namespace Ristorante.Models.Repository
 
             var elencoIndiciPortate = dettagliOrdini.Select(w => w.IdPortata).ToList();
 
-            List<Portata>elencoPortate = new List<Portata>();
+            var portateScelte = dettagliOrdini.Join(
+                portate,
+                x => x.IdPortata,
+                y => y.Id,
+                (x, y) => new
+                {
+                    y.Id,
+                    y.Nome,
+                    y.Prezzo,
+                    y.TipologiaPortata,
+                    x.Quantita
+                }).ToList();
 
-            foreach(int i in elencoIndiciPortate) 
+            List<PortataConInfo> elencoPortate = new List<PortataConInfo>();
+
+            foreach(var item in portateScelte) 
             {
-                var Portata = portate.FirstOrDefault(w => w.Id == i);
-                elencoPortate.Add(Portata);
+                PortataConInfo portataConInfo = 
+                    new PortataConInfo(item.Id,item.Nome,item.Prezzo,item.TipologiaPortata,item.Quantita);
+                elencoPortate.Add(portataConInfo);
             }
 
             totalNum = elencoPortate.Count();

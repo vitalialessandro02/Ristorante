@@ -8,20 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Ristorante.Models.Context;
+using Ristorante.Models.Repository;
 
 namespace Ristorante.Models.Extensions
 {
     public static class ServiceExtension
     {
-        /*public static IServiceCollection AddModelServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddModelServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<MyDbContext>(conf =>
             {
                 conf.UseSqlServer(configuration.GetConnectionString("MyDbContext"));
             });
 
-            services.AddScoped<AziendaRepository>();
+            services.AddScoped<OrdineRepository>();
+            
+            services.AddScoped<UtenteRepository>();
+            
             return services;
-        }*/
+        }
     }
 }
