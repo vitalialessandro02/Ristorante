@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ristorante.Models.Repository
+namespace Ristorante.Models.Repositories
 {
     public class PortataRepository : GenericRepository<Portata>
     {

@@ -5,7 +5,7 @@ using Ristorante.Application.Models.Requests;
 using Ristorante.Application.Models.Responses;
 
 
-namespace Unicam.Paradigmi.Web.Controllers
+namespace Ristorante.Web.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]

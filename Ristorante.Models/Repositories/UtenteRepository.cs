@@ -7,7 +7,7 @@ using Ristorante.Models.Context;
 using Ristorante.Models.Entities;
 using Ristorante.Models.Repositories;
 
-namespace Ristorante.Models.Repository
+namespace Ristorante.Models.Repositories
 {
     public class UtenteRepository : GenericRepository<Utente>
     {

@@ -28,7 +28,7 @@ namespace Ristorante.Web.Controllers
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
             string idUtente = claimsIdentity.Claims
-                .Where(w => w.Type == "id_utente").First().Value;
+                .Where(w => w.Type == "Id").First().Value;
             /*var validator = new CreateAziendaRequestValidator();
             validator.Validate(request);*/
             var utente = request.ToEntity();

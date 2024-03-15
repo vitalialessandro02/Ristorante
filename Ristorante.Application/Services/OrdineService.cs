@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ristorante.Application.Abstractions.Services;
 using Ristorante.Models.Entities;
-using Ristorante.Models.Repository;
+using Ristorante.Models.Repositories;
 
 namespace Ristorante.Application.Services
 {

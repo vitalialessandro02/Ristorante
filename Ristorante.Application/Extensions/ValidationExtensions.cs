@@ -2,7 +2,7 @@
 using FluentValidation.Validators;
 using System.Text.RegularExpressions;
 
-namespace Unicam.Paradigmi.Application.Extensions
+namespace Ristorante.Application.Extensions
 {
     public static class ValidationExtensions
     {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Ristorante.Models.Repository 
+namespace Ristorante.Models.Repositories
 {
     public class DettaglioOrdineRepository : GenericRepository<DettagliOrdine>
     {

@@ -21,15 +21,20 @@ namespace Ristorante.Application.Middlewares
             
         }
 
+        /*
+         *  , IOrdineService aziendaService
+         */
         public async Task Invoke(HttpContext context
-            , IOrdineService aziendaService
-             ,IUtenteService utenteService
+            ,IDettaglioOrdineService dettaglioOrdineService
+            , IOrdineService ordineService
+            , IUtenteService utenteService
             , IConfiguration configuration
             
             )
         {
             
             context.RequestServices.GetRequiredService<IOrdineService>();
+            context.RequestServices.GetRequiredService<IDettaglioOrdineService>();
             context.RequestServices.GetRequiredService<IUtenteService>();
             //Implementiamo il codice effettivo del nostro middleware
 

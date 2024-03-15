@@ -3,7 +3,7 @@ using Ristorante.Application.Abstractions.Services;
 using Ristorante.Application.Services;
 
 
-namespace Unicam.Paradigmi.Application.Extensions
+namespace Ristorante.Application.Extensions
 {
     public static class ServiceExtension
     {
@@ -17,6 +17,7 @@ namespace Unicam.Paradigmi.Application.Extensions
             services.AddScoped<IUtenteService, UtenteService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IOrdineService,OrdineService>();
+            services.AddScoped<IDettaglioOrdineService, DettaglioOrdineService>();
             return services;
         }
     }

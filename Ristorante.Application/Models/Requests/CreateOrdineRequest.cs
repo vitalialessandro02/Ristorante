@@ -13,6 +13,7 @@ namespace Ristorante.Application.Models.Requests
         public DateTime DataOrdine { get; set; }
         public string Indirizzo { get; set; } = string.Empty;
 
+
         public Ordine ToEntity()
         {
             var ordine = new Ordine();

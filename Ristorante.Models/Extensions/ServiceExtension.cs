@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Ristorante.Models.Context;
-using Ristorante.Models.Repository;
+using Ristorante.Models.Repositories;
 
 namespace Ristorante.Models.Extensions
 {
@@ -23,7 +23,10 @@ namespace Ristorante.Models.Extensions
 
             services.AddScoped<OrdineRepository>();
             
+            services.AddScoped<DettaglioOrdineRepository>();
+
             services.AddScoped<UtenteRepository>();
+
             
             return services;
         }
