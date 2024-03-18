@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ristorante.Application.Abstractions.Services;
+using Ristorante.Models.Context;
 using Ristorante.Models.Entities;
 using Ristorante.Models.Repositories;
 
@@ -20,8 +21,8 @@ namespace Ristorante.Application.Services
 
         public void addUtente(Utente utente)
         {
-            _utenteRepository.Aggiungi(utente);
-            _utenteRepository.Save();
+                _utenteRepository.Aggiungi(utente);
+                _utenteRepository.Save();
         }
 
         public List<Utente> getUtenti()

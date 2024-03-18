@@ -13,10 +13,10 @@ namespace Ristorante.Application.Extensions
     AppDomain.CurrentDomain.GetAssemblies().
            SingleOrDefault(assembly => assembly.GetName().Name == "Ristorante.Application")
     );
-
             services.AddScoped<IUtenteService, UtenteService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IOrdineService,OrdineService>();
+            services.AddScoped<IPortataService, PortataService>();
             services.AddScoped<IDettaglioOrdineService, DettaglioOrdineService>();
             return services;
         }

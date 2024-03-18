@@ -26,13 +26,14 @@ namespace Ristorante.Application.Middlewares
          */
         public async Task Invoke(HttpContext context
             ,IDettaglioOrdineService dettaglioOrdineService
+            ,IPortataService portataService
             , IOrdineService ordineService
             , IUtenteService utenteService
             , IConfiguration configuration
             
             )
         {
-            
+            context.RequestServices.GetRequiredService<IPortataService>();
             context.RequestServices.GetRequiredService<IOrdineService>();
             context.RequestServices.GetRequiredService<IDettaglioOrdineService>();
             context.RequestServices.GetRequiredService<IUtenteService>();

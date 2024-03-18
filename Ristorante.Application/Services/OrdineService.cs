@@ -20,16 +20,16 @@ namespace Ristorante.Application.Services
             _dettaglioOrdineRepository = dettaglioOrdineRepository;
         }
 
-        public void addOrdine(Ordine ordine, Dictionary<Portata, int> portate)
+        public void addOrdine(Ordine ordine, List<int> portate, List<int> quantita)
         {
             _ordineRepository.Aggiungi(ordine);
             _ordineRepository.Save();
-            var dettaglioOrdine = new DettagliOrdine();
-            foreach(KeyValuePair<Portata,int> portata in portate)
+            for(int i = 0; i < portate.Count(); i++)
             {
-                dettaglioOrdine.IdPortata = portata.Key.Id;
+                var dettaglioOrdine = new DettagliOrdine();
+                dettaglioOrdine.IdPortata = portate.ElementAt(i);
                 dettaglioOrdine.IdOrdine = ordine.IdOrdine;
-                dettaglioOrdine.Quantita = portata.Value;
+                dettaglioOrdine.Quantita = quantita.ElementAt(i);
                 _dettaglioOrdineRepository.Aggiungi(dettaglioOrdine);
                 _dettaglioOrdineRepository.Save();
             }

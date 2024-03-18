@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using Ristorante.Application.Options;
 using Ristorante.Web.Results;
+using System.Text.Json.Serialization;
 
 namespace Ristorante.Web.Extensions
 {
@@ -21,6 +22,8 @@ namespace Ristorante.Web.Extensions
                         return new BadRequestResultFactory(context);
                     };
                 });
+            services.AddControllersWithViews().AddJsonOptions(options => options.JsonSerializerOptions.Converters
+                .Add(new JsonStringEnumConverter()));  
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo

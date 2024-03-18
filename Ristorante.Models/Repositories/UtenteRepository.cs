@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Ristorante.Models.Context;
 using Ristorante.Models.Entities;
 using Ristorante.Models.Repositories;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Ristorante.Models.Repositories
 {
@@ -31,6 +32,15 @@ namespace Ristorante.Models.Repositories
                 .Skip(from)
                 .Take(num)
                 .ToList();
+        }
+
+        public int getUtenteByEmail(string email)
+        {
+            int i = -1;
+            var query = _ctx.Utenti.AsQueryable();
+                query = query.Where(w => w.Email.Equals(email));
+            int result = query.Select(w => w.Id).FirstOrDefault();
+            return result == 0 ? -1 : result;
         }
 
     }

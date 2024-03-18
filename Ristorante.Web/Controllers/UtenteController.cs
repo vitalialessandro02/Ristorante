@@ -11,7 +11,7 @@ namespace Ristorante.Web.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class UtenteController:ControllerBase
     {
 
@@ -26,10 +26,10 @@ namespace Ristorante.Web.Controllers
         [Route("newUtente")]
         public IActionResult  CreateUtente(CreateUtenteRequest request)
         {
-            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            /*var claimsIdentity = this.User.Identity as ClaimsIdentity;
             string idUtente = claimsIdentity.Claims
                 .Where(w => w.Type == "Id").First().Value;
-            /*var validator = new CreateAziendaRequestValidator();
+            var validator = new CreateAziendaRequestValidator();
             validator.Validate(request);*/
             var utente = request.ToEntity();
              _utenteService.addUtente(utente);

@@ -16,7 +16,7 @@ namespace Ristorante.Application.Models.Requests
 
         public string Password { get; set; } = string.Empty;
 
-        public Ruolo RuoloUtente { get; set; }
+ 
         public Utente ToEntity()
         {
             var utente = new Utente();
@@ -24,7 +24,7 @@ namespace Ristorante.Application.Models.Requests
             utente.Nome = Nome;
             utente.Cognome = Cognome;
             utente.Password = Password;
-            utente.RuoloUtente = RuoloUtente;
+            utente.RuoloUtente = Ruolo.Cliente;
          
             return utente;
         }

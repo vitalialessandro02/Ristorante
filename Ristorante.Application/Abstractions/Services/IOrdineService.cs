@@ -13,6 +13,6 @@ namespace Ristorante.Application.Abstractions.Services
 
         List<Ordine> getOrdini(int from, int num, out int totalNum, DateTime dataInizio, DateTime dataFine, int idUtente);
 
-        void addOrdine(Ordine ordine, Dictionary<Portata, int> portate);
+        void addOrdine(Ordine ordine, List<int> portate, List<int> quantita);
     }
 }

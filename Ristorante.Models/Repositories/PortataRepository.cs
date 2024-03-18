@@ -16,19 +16,20 @@ namespace Ristorante.Models.Repositories
         
         }
 
-        public List<Portata> GetPortate(int from, int num, out int totalNum, int? idPortata)
+        public List<Portata> GetPortate(int from, int num, out int totalNum, Tipologia? tipologia)
         {
             var query = _ctx.Portate.AsQueryable();
 
-            if (idPortata.HasValue)
+            if (tipologia.HasValue)
             {
-                query = query.Where(w => w.Id.Equals(idPortata));
+                query = query.Where(w => w.TipologiaPortata.Equals(tipologia));
             }
            
             totalNum = query.Count();
 
             return
                 query
+                .OrderBy(w=> w.TipologiaPortata)
                 .OrderBy(o => o.Id)
                 .Skip(from)
                 .Take(num)
