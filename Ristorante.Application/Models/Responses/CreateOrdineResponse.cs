@@ -4,6 +4,6 @@ namespace Ristorante.Application.Models.Responses
 {
     public class CreateOrdineResponse
     {
-        public OrdineDto Ordine { get; set; } = null!;
+        public OrdineCreatoDto Ordine { get; set; } = null!;
     }
 }

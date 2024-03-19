@@ -16,6 +16,19 @@ namespace Ristorante.Models.Repositories
         
         }
 
+        public List<Portata> GetPortate(List<int> portate)
+        {
+            var query = _ctx.Portate.AsQueryable();
+            query=query.Where(x=>portate.Contains(x.Id));
+            return
+              query
+              .OrderBy(w => w.TipologiaPortata)
+              .OrderBy(o => o.Id)
+              .ToList();
+        }
+
+
+
         public List<Portata> GetPortate(int from, int num, out int totalNum, Tipologia? tipologia)
         {
             var query = _ctx.Portate.AsQueryable();

@@ -54,10 +54,11 @@ namespace Ristorante.Web.Controllers
                     .Where(w => w.Type == "Id").First().Value;
                 var ordine = request.ToEntity();
                 _ordineService.addOrdine(ordine, request.Portate, request.Quantita);
-                
+            var prezzo = _ordineService.GetPrezzo();
+            var NumeroOrdine = _ordineService.GetNumeroOrdine(); 
 
                 var response = new CreateOrdineResponse();
-                response.Ordine = new Application.Models.Dtos.OrdineDto(ordine);
+                response.Ordine = new Application.Models.Dtos.OrdineCreatoDto(prezzo,NumeroOrdine);
                 return Ok(ResponseFactory
                     .WithSuccess(response)
                     );
