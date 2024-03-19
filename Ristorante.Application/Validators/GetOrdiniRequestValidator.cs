@@ -10,12 +10,12 @@ namespace Ristorante.Application.Validators
         private readonly UtenteRepository _utenteRepository = new UtenteRepository(new MyDbContext());
         public GetOrdiniRequestValidator()
         {
-            RuleFor(r => r.idUtente)
+            RuleFor(r => r.Email)
                 .NotEmpty()
-                .WithMessage("Il campo nome è obbligatorio")
+                .WithMessage("Il campo email è obbligatorio")
                 .NotNull()
-                .WithMessage("Il campo nome non può essere nullo")
-                .Must(r => _utenteRepository.UtenteExists(r))
+                .WithMessage("Il campo email non può essere nullo")
+                .Must(r => _utenteRepository.GetIdUtenteByEmail(r) != -1)
                 .WithMessage("Utente non presente");
             RuleFor(r => r.dataInizio)
                 .Must(r => r <= DateTime.Now)

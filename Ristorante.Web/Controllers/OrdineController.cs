@@ -65,12 +65,12 @@ namespace Ristorante.Web.Controllers
             }
             
             [HttpPost]
-            [Route("listOrdini")]
+            [Route("getOrdini")]
             public IActionResult GetOrdine(GetOrdiniRequest request)
             {
                 int totalNum = 0;
-                var ordini = _ordineService.GetOrdini(request.PageNumber * request.PageSize, request.PageSize, out totalNum, request.dataInizio, request.dataFine, request.idUtente);
-                var response = new GetOrdineResponse();
+                var ordini = _ordineService.GetOrdini(request.PageNumber * request.PageSize, request.PageSize, out totalNum, request.dataInizio, request.dataFine, request.Email);
+                var response = new GetOrdiniResponse();
                 var pageFounded = (totalNum / (decimal)request.PageSize);
                 response.NumeroPagine = (int)Math.Ceiling(pageFounded);
                 response.OrdineDtos = ordini.Select(s =>

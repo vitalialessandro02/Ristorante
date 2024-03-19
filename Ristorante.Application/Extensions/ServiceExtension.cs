@@ -9,10 +9,10 @@ namespace Ristorante.Application.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddValidatorsFromAssembly(
-    AppDomain.CurrentDomain.GetAssemblies().
+           services.AddValidatorsFromAssembly(
+           AppDomain.CurrentDomain.GetAssemblies().
            SingleOrDefault(assembly => assembly.GetName().Name == "Ristorante.Application")
-    );
+           );
             services.AddScoped<IUtenteService, UtenteService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IOrdineService,OrdineService>();

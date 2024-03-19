@@ -16,8 +16,7 @@ namespace Ristorante.Application.Models.Requests
 
         public DateTime dataFine { get; set; }
 
-        public int idUtente {  get; set; }  
-
+        public string Email { get; set; }
 
 
     }
