@@ -31,7 +31,7 @@ namespace Ristorante.Application.Services
             _portataRepository = portataRepository;
         }
 
-        public void addOrdine(Ordine ordine, List<int> portate, List<int> quantita)
+        public void AddOrdine(Ordine ordine, List<int> portate, List<int> quantita)
         {
             _ordineRepository.Aggiungi(ordine);
             _ordineRepository.Save();
@@ -51,13 +51,9 @@ namespace Ristorante.Application.Services
             ncontorni = CountByTipologia(Tipologia.Contorno, portate);
             ndolci = CountByTipologia(Tipologia.Dolce, portate);
 
-            if (nprimi == 0 || nsecondi == 0 || ncontorni == 0 || ndolci == 0) this.prezzo= prezzoCalcolato(portate,quantita);
+            if (nprimi == 0 || nsecondi == 0 || ncontorni == 0 || ndolci == 0) prezzo = PrezzoCalcolato(portate,quantita);
           
-            else prezzo = prezzoCalcolato(portate, quantita) - Sconto(portate);
-            
-
-
-
+            else prezzo = PrezzoCalcolato(portate, quantita) - Sconto(portate);
 
         } 
 
@@ -65,11 +61,8 @@ namespace Ristorante.Application.Services
         {
             List<Portata> portateordinate = _portataRepository.GetPortate(portate);
 
-
-            
-
-             double prezzo = (maxForTipologia(Tipologia.Primo, portate) + maxForTipologia(Tipologia.Secondo, portate)
-                 + maxForTipologia(Tipologia.Contorno, portate) + maxForTipologia(Tipologia.Dolce, portate))*0.1;
+             double prezzo = (MaxForTipologia(Tipologia.Primo, portate) + MaxForTipologia(Tipologia.Secondo, portate)
+                 + MaxForTipologia(Tipologia.Contorno, portate) + MaxForTipologia(Tipologia.Dolce, portate))*0.1;
 
             return prezzo;
         }
@@ -79,41 +72,36 @@ namespace Ristorante.Application.Services
         private int CountByTipologia(Tipologia tipologia, List<int> portate)
         {
             List<Portata> portateordinate = _portataRepository.GetPortate(portate);
-            
-
             return portateordinate.Where(w => w.TipologiaPortata.Equals(tipologia)).Count();
         }
 
 
-        private double maxForTipologia(Tipologia tipologia, List<int> portate)
+        private double MaxForTipologia(Tipologia tipologia, List<int> portate)
         {
             List<Portata> portateordinate = _portataRepository.GetPortate(portate);
-
            return  portateordinate.Where(w => w.TipologiaPortata.Equals(tipologia)).Select(w => w.Prezzo).Max();
         }
 
 
-        private double prezzoCalcolato(List<int> portate,List<int> quantità)
+        private double PrezzoCalcolato(List<int> portate,List<int> quantità)
         {
           
             var prezzi = _portataRepository.GetPortate(portate).Select(w => w.Prezzo);
-            double prezzo=0.0;
+            double prezzo = 0.0;
             for(int i = 0; i < portate.Count(); i++)
             {
-                prezzo +=prezzi.ElementAt(i) * quantità.ElementAt(i);
+                prezzo += prezzi.ElementAt(i) * quantità.ElementAt(i);
             }
-
-
             return prezzo;
         }
 
 
-        public List<Ordine> getOrdini()
+        public List<Ordine> GetOrdini()
         {
             return new List<Ordine>();
         }
 
-        public List<Ordine> getOrdini(int from, int num, out int totalNum, DateTime dataInizio, DateTime dataFine, int idUtente)
+        public List<Ordine> GetOrdini(int from, int num, out int totalNum, DateTime dataInizio, DateTime dataFine, int idUtente)
         {
             return _ordineRepository.GetOrdine(from, num, out totalNum, dataInizio, dataFine, idUtente);
         }

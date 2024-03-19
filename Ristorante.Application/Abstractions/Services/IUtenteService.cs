@@ -9,11 +9,11 @@ namespace Ristorante.Application.Abstractions.Services
 {
     public interface IUtenteService
     {
-        List<Utente> getUtenti();
+        List<Utente> GetUtenti();
 
-        List<Utente> getUtenti(int from, int num, out int totalNum, int? idUtente);
+        List<Utente> GetUtenti(int from, int num, out int totalNum, int? idUtente);
 
-        void addUtente(Utente utente);
+        void AddUtente(Utente utente);
 
     }
 }

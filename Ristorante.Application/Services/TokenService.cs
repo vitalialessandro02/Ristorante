@@ -17,15 +17,8 @@ namespace Ristorante.Application.Abstractions.Services
         {
             _jwtAuthOption = jwtAuthOption.Value;
         }
-        //Pacchetti nuget necessari  System.IdentityModel.Tokens.Jwt
         public string CreateToken(CreateTokenRequest request)
         {
-            //STEP 1 : Verificare esattezza della coppia username/password
-            //TODO : Effettuare la verifica
-            //STEP 2 : Se username/password corrette creo il token con le claims necessarie
-            //TODO : Prendere i parametri dalla configurazione
-            //TODO : Prendere le claims dal database
-
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim("Id", "3"));
             claims.Add(new Claim("Email", "efklvn"));
@@ -48,7 +41,6 @@ namespace Ristorante.Application.Abstractions.Services
                 );
 
             var token = new JwtSecurityTokenHandler().WriteToken(securityToken);
-            //STEP 3 : Restituisco il token
             return token;
         }
     }

@@ -11,7 +11,6 @@ namespace Ristorante.Web.Extensions
     {
         public static WebApplication? AddWebMiddleware(this WebApplication? app)
         {
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -20,7 +19,6 @@ namespace Ristorante.Web.Extensions
 
             app.Use(async (HttpContext context, Func<Task> next) =>
             {
-                //await context.Response.WriteAsync("Prova");
                 await next.Invoke();
             });
 

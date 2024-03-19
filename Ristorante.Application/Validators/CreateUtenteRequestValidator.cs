@@ -27,7 +27,7 @@ namespace Ristorante.Application.Validators
                 .WithMessage("Il campo email è obbligatorio")
                 .NotNull()
             .WithMessage("Il campo email non può essere nullo")
-                .Must(r => _utenteRepository.getUtenteByEmail(r) == -1)
+                .Must(r => _utenteRepository.GetIdUtenteByEmail(r) == -1)
                 .WithMessage("Email già presente");
             RuleFor(r => r.Password)
                 .NotEmpty()

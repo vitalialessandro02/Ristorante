@@ -21,9 +21,6 @@ namespace Ristorante.Application.Middlewares
             
         }
 
-        /*
-         *  , IOrdineService aziendaService
-         */
         public async Task Invoke(HttpContext context
             ,IDettaglioOrdineService dettaglioOrdineService
             ,IPortataService portataService
@@ -37,10 +34,7 @@ namespace Ristorante.Application.Middlewares
             context.RequestServices.GetRequiredService<IOrdineService>();
             context.RequestServices.GetRequiredService<IDettaglioOrdineService>();
             context.RequestServices.GetRequiredService<IUtenteService>();
-            //Implementiamo il codice effettivo del nostro middleware
-
-            //Per andare al middleware successivo dobbiamo chiamare _next.Invoke();
-            //context.Response.WriteAsync("Blocco la chiamata");
+            
             await _next.Invoke(context);
         }
     }

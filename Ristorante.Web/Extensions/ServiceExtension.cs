@@ -28,7 +28,7 @@ namespace Ristorante.Web.Extensions
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Unicam Paradigmi Test App",
+                    Title = "Ristorante App",
                     Version = "v1"
                 });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()

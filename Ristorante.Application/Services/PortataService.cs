@@ -18,7 +18,7 @@ namespace Ristorante.Application.Services
             _portataRepository = portataRepository;
         }
         public List<Portata> GetPortate() { return new List<Portata>(); }
-        public List<Portata> getPortate(int from, int num, out int totalNum, Tipologia? tipologia)
+        public List<Portata> GetPortate(int from, int num, out int totalNum, Tipologia? tipologia)
         {
             return _portataRepository.GetPortate(from, num, out totalNum, tipologia);
         }

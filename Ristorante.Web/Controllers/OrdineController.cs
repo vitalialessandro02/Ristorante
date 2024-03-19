@@ -23,27 +23,27 @@ namespace Ristorante.Web.Controllers
             public OrdineController(IOrdineService ordineService, IPortataService portataService)
             {
                 _ordineService = ordineService;
-            _portataService = portataService;
+                _portataService = portataService;
             
             }
 
             [HttpPost]
             [Route("getPortate")]
             public IActionResult GetPortate(GetPortateRequest request, Tipologia tipologia)
-        {
-            int totalNum = 0;
-            var portate = _portataService.getPortate(request.PageNumber * request.PageSize, request.PageSize, out totalNum, tipologia);
-            var response = new GetPortateResponse();
-            var pageFounded = (totalNum / (decimal)request.PageSize);
-            response.NumeroPagine = (int)Math.Ceiling(pageFounded);
-            response.PortataDtos = portate.Select(s =>
-            new Application.Models.Dtos.PortataDto(s)).ToList();
+            {
+                int totalNum = 0;
+                var portate = _portataService.GetPortate(request.PageNumber * request.PageSize, request.PageSize, out totalNum, tipologia);
+                var response = new GetPortateResponse();
+                var pageFounded = (totalNum / (decimal)request.PageSize);
+                response.NumeroPagine = (int)Math.Ceiling(pageFounded);
+                response.PortataDtos = portate.Select(s =>
+                new Application.Models.Dtos.PortataDto(s)).ToList();
 
 
-            return Ok(ResponseFactory
-           .WithSuccess(response)
-             );
-        }
+                return Ok(ResponseFactory
+                .WithSuccess(response)
+                );
+            }
         
             [HttpPost]
             [Route("newOrdine")]
@@ -53,9 +53,9 @@ namespace Ristorante.Web.Controllers
                 string idOrdine = claimsIdentity.Claims
                     .Where(w => w.Type == "Id").First().Value;
                 var ordine = request.ToEntity();
-                _ordineService.addOrdine(ordine, request.Portate, request.Quantita);
-            var prezzo = _ordineService.GetPrezzo();
-            var NumeroOrdine = _ordineService.GetNumeroOrdine(); 
+                _ordineService.AddOrdine(ordine, request.Portate, request.Quantita);
+                var prezzo = _ordineService.GetPrezzo();
+                var NumeroOrdine = _ordineService.GetNumeroOrdine(); 
 
                 var response = new CreateOrdineResponse();
                 response.Ordine = new Application.Models.Dtos.OrdineCreatoDto(prezzo,NumeroOrdine);
@@ -68,17 +68,13 @@ namespace Ristorante.Web.Controllers
             [Route("listOrdini")]
             public IActionResult GetOrdine(GetOrdiniRequest request)
             {
-            // TODO : Validazione della richiesta
                 int totalNum = 0;
-                var ordini = _ordineService.getOrdini(request.PageNumber * request.PageSize, request.PageSize, out totalNum, request.dataInizio, request.dataFine, request.idUtente);
-
+                var ordini = _ordineService.GetOrdini(request.PageNumber * request.PageSize, request.PageSize, out totalNum, request.dataInizio, request.dataFine, request.idUtente);
                 var response = new GetOrdineResponse();
                 var pageFounded = (totalNum / (decimal)request.PageSize);
                 response.NumeroPagine = (int)Math.Ceiling(pageFounded);
                 response.OrdineDtos = ordini.Select(s =>
                 new Application.Models.Dtos.OrdineDto(s)).ToList();
-
-
                  return Ok(ResponseFactory
                 .WithSuccess(response)
                   );

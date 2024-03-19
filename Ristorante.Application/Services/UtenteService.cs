@@ -19,20 +19,20 @@ namespace Ristorante.Application.Services
             _utenteRepository = utenteRepository;
         }
 
-        public void addUtente(Utente utente)
+        public void AddUtente(Utente utente)
         {
                 _utenteRepository.Aggiungi(utente);
                 _utenteRepository.Save();
         }
 
-        public List<Utente> getUtenti()
+        public List<Utente> GetUtenti()
         {
             return new List<Utente>();
         }
 
-        public List<Utente> getUtenti(int from, int num, out int totalNum, int? idUtente)
+        public List<Utente> GetUtenti(int from, int num, out int totalNum, int? idUtente)
         {
-            return _utenteRepository.getUtenti(from, num, out totalNum, idUtente);   
+            return _utenteRepository.GetUtenti(from, num, out totalNum, idUtente);   
         }
     }
 }

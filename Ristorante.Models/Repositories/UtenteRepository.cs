@@ -17,7 +17,7 @@ namespace Ristorante.Models.Repositories
 
         }
 
-        public List<Utente> getUtenti(int from, int num, out int totalNum, int? idUtente)
+        public List<Utente> GetUtenti(int from, int num, out int totalNum, int? idUtente)
         {
             var query = _ctx.Utenti.AsQueryable();
             if (idUtente.HasValue)
@@ -34,13 +34,19 @@ namespace Ristorante.Models.Repositories
                 .ToList();
         }
 
-        public int getUtenteByEmail(string email)
+        public int GetIdUtenteByEmail(string email)
         {
-            int i = -1;
             var query = _ctx.Utenti.AsQueryable();
                 query = query.Where(w => w.Email.Equals(email));
             int result = query.Select(w => w.Id).FirstOrDefault();
             return result == 0 ? -1 : result;
+        }
+
+        public bool UtenteExists(int id)
+        {
+            var query = _ctx.Utenti.AsQueryable();
+            query = query.Where(w => w.Id.Equals(id));
+            return query.Select(w => w.Id).Contains(id);
         }
 
     }

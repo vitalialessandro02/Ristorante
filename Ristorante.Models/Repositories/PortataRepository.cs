@@ -19,7 +19,7 @@ namespace Ristorante.Models.Repositories
         public List<Portata> GetPortate(List<int> portate)
         {
             var query = _ctx.Portate.AsQueryable();
-            query=query.Where(x=>portate.Contains(x.Id));
+            query = query.Where(x=>portate.Contains(x.Id));
             return
               query
               .OrderBy(w => w.TipologiaPortata)
@@ -79,6 +79,12 @@ namespace Ristorante.Models.Repositories
                   .Skip(from)
                   .Take(num)
                   .ToList();
+        }
+
+        public bool PortateExists(List<int> ids)
+        {
+            List<Portata> portate = GetPortate(ids);
+            return portate.Count == ids.Count;
         }
     }
 }
