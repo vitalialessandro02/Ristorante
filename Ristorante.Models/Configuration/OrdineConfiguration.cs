@@ -16,15 +16,12 @@ namespace Ristorante.Models.Configuration
             builder.ToTable("Ordini");
             builder.HasKey(p => p.IdOrdine);
             builder.Property(p => p.IdUtente);
-
-            
             builder.Property(p => p.DataOrdine);
             builder.Property(p => p.Indirizzo)
-              .HasMaxLength(50);
-
+                .HasMaxLength(50);
             builder.HasOne(x => x.UtenteCheOrdina)
-            .WithMany(x => x.Ordini)
-            .HasForeignKey(x => x.IdUtente);
+                .WithMany(x => x.Ordini)
+                .HasForeignKey(x => x.IdUtente);
 
         }
 

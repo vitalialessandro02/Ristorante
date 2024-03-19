@@ -38,8 +38,6 @@ namespace Ristorante.Web.Controllers
                 response.NumeroPagine = (int)Math.Ceiling(pageFounded);
                 response.PortataDtos = portate.Select(s =>
                 new Application.Models.Dtos.PortataDto(s)).ToList();
-
-
                 return Ok(ResponseFactory
                 .WithSuccess(response)
                 );
@@ -56,7 +54,6 @@ namespace Ristorante.Web.Controllers
                 _ordineService.AddOrdine(ordine, request.Portate, request.Quantita);
                 var prezzo = _ordineService.GetPrezzo();
                 var NumeroOrdine = _ordineService.GetNumeroOrdine(); 
-
                 var response = new CreateOrdineResponse();
                 response.Ordine = new Application.Models.Dtos.OrdineCreatoDto(prezzo,NumeroOrdine);
                 return Ok(ResponseFactory

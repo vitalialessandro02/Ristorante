@@ -6,7 +6,8 @@ namespace Ristorante.Application.Models.Dtos
     {
         public OrdineDto() { }  
 
-        public OrdineDto(Ordine ordine) {
+        public OrdineDto(Ordine ordine) 
+        {
             IdOrdine = ordine.IdOrdine;
             IdUtente = ordine.IdUtente; 
             DataOrdine = ordine.DataOrdine; 

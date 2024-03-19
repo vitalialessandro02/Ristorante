@@ -13,11 +13,8 @@ namespace Ristorante.Models.Entities
         public string Email { get; set; } = string.Empty;
         public string Nome { get; set; } = string.Empty;
         public string Cognome { get; set; } = string.Empty;
-
         public string Password { get; set; } = string.Empty;
-
         public virtual ICollection< Ordine> Ordini { get; set; }
-
         public Ruolo RuoloUtente { get; set; }
 
     }

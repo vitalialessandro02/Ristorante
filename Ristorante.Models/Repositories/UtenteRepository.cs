@@ -20,10 +20,12 @@ namespace Ristorante.Models.Repositories
         public List<Utente> GetUtenti(int from, int num, out int totalNum, int? idUtente)
         {
             var query = _ctx.Utenti.AsQueryable();
+            
             if (idUtente.HasValue)
             {
                 query = query.Where(w => w.Id.Equals(idUtente));
             }
+            
             totalNum = query.Count();
 
             return

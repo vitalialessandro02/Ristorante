@@ -19,10 +19,9 @@ namespace Ristorante.Models.Configuration
             builder.Property(p => p.Nome)
                 .HasMaxLength(50);
             builder.Property(p => p.Prezzo);
- 
             builder.Property(p => p.TipologiaPortata)
-                    .HasColumnName("Tipologia")
-                    .HasConversion<int>();
+                .HasColumnName("Tipologia")
+                .HasConversion<int>();
 
 
 

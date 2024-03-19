@@ -19,11 +19,11 @@ namespace Ristorante.Models.Configuration
             builder.Property(p => p.Email)
                 .HasMaxLength(50);
             builder.Property(p => p.Nome)
-              .HasMaxLength(50);
+                .HasMaxLength(50);
             builder.Property(p => p.Cognome)
-              .HasMaxLength(50);
+                .HasMaxLength(50);
             builder.Property(p => p.Password)
-              .HasMaxLength(50);
+                .HasMaxLength(50);
             builder.Property(p => p.RuoloUtente)
                 .HasColumnName("Ruolo")
                 .HasConversion<int>();

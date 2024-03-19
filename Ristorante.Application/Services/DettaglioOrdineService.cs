@@ -14,7 +14,10 @@ namespace Ristorante.Application.Services
 
         public List<DettagliOrdine> GetDettagliOrdineList() { return new List<DettagliOrdine>() ;}
         
-        public List<DettagliOrdine> GetDettagliOrdine(int from, int num, out int totalNum, int? idPortata, int? idOrdine) { return _dettaglioOrdineRepository.GetDettagliOrdine(from,num,out totalNum,idPortata,idOrdine); }
+        public List<DettagliOrdine> GetDettagliOrdine(int from, int num, out int totalNum, int? idPortata, int? idOrdine) 
+        { 
+            return _dettaglioOrdineRepository.GetDettagliOrdine(from,num,out totalNum,idPortata,idOrdine); 
+        }
 
     }
 }

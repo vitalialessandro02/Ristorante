@@ -8,7 +8,8 @@ namespace Ristorante.Application.Models.Dtos
 
         public UtenteDto() { }
 
-        public UtenteDto(Utente utente) { 
+        public UtenteDto(Utente utente) 
+        { 
          Id = utente.Id;
             Email = utente.Email;
             Nome = utente.Nome;

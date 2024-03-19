@@ -19,9 +19,11 @@ namespace Ristorante.Application.Validators
             .WithMessage("Il campo email non può essere nullo")
                 .Must(r => _utenteRepository.GetIdUtenteByEmail(r) != -1)
                 .WithMessage("Utente non presente");
+            
             RuleFor(r => r)
                 .Must(r => r.Portate.Count == r.Quantita.Count && !r.Portate.IsNullOrEmpty())
                 .WithMessage("Il numero di portate inserite dev'essere uguale alle quantita' di ciascuna portata");
+            
             RuleFor(r => r.Portate)
                 .Must(r => _portataRepository.PortateExists(r))
                 .WithMessage("Alcune portate selezionate non esistono");
