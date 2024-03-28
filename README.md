@@ -6,5 +6,6 @@ Una volta scaricato il progetto tramite GitHub eseguire il file script.sql su SQ
 Nell account "ristorante" impostare come database predefinito "Ristorante" e, sulla sezione "Mapping Utente", selezionare "public" e "db_owner".
 Avviare l'applicazione da Visual Studio usando come progetto di avvio "Ristorante.Web - Production".
 ISTRUZIONI UTILIZZO
-Sulla pagina swagger, nelle sezioni newOrdine e getOrdini il campo "email" si riferisce alle email degli utenti registrati.
+Sulla pagina swagger, nelle sezione token il campo "username" si riferisce all'email dell'utente che vuole accedere.
 Nel campo "portate" della sezione newOrdine scrivere l'elenco delle portate utilizzando gli id visibili tramite getPortate e per ogni portata scrivere, nello stesso ordine, le quantità associate.
+Nel campo idDaVisualizzare della sezione getOrdini, se si è Amministratore, scrivere -1 se si vogliono vedere tutti gli ordini.
