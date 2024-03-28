@@ -31,7 +31,7 @@ namespace Ristorante.Models.Repositories
                 queryOrdine = queryOrdine.Where(w => (w.DataOrdine >= dataInizio) && 
                 (w.DataOrdine <= dataFine) && (w.IdUtente.Equals(idUtente)));
             } 
-            if(ruolo.Equals(Ruolo.Amministratore) && idDaVisualizzare == -1)
+            if(ruolo.Equals(Ruolo.Amministratore) && idDaVisualizzare != -1)
             {
                 queryOrdine = queryOrdine.Where(w => (w.DataOrdine >= dataInizio) && (w.DataOrdine <= dataFine) && (w.IdUtente.Equals(idDaVisualizzare)));
             }
