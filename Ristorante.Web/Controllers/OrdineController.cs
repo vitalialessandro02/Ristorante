@@ -8,6 +8,7 @@ using Ristorante.Application.Models.Requests;
 using Ristorante.Application.Models.Responses;
 using Ristorante.Models.Entities;
 using Ristorante.Models.Enumeration;
+using System.Runtime.Serialization;
 using System.Security.Claims;
 
 namespace Ristorante.Web.Controllers
@@ -29,10 +30,11 @@ namespace Ristorante.Web.Controllers
 
             [HttpPost]
             [Route("getPortate")]
-            public IActionResult GetPortate(GetPortateRequest request, Tipologia tipologia)
+            public IActionResult GetPortate(GetPortateRequest request)
             {
                 int totalNum = 0;
-                var portate = _portataService.GetPortate(request.PageNumber * request.PageSize, request.PageSize, out totalNum, tipologia);
+                var portate = _portataService.GetPortate(request.PageNumber * request.PageSize, request.PageSize,
+                    out totalNum, Enum.Parse<Tipologia>(request.TipologiaPortate, true));
                 var response = new GetPortateResponse();
                 var pageFounded = (totalNum / (decimal)request.PageSize);
                 response.NumeroPagine = (int)Math.Ceiling(pageFounded);
@@ -48,9 +50,9 @@ namespace Ristorante.Web.Controllers
             public IActionResult CreateOrdine(CreateOrdineRequest request)
             {
                 var claimsIdentity = this.User.Identity as ClaimsIdentity;
-                string idOrdine = claimsIdentity.Claims
+                string idUtente = claimsIdentity.Claims
                     .Where(w => w.Type == "Id").First().Value;
-                var ordine = request.ToEntity();
+                var ordine = request.ToEntity(Int32.Parse(idUtente));
                 _ordineService.AddOrdine(ordine, request.Portate, request.Quantita);
                 var prezzo = _ordineService.GetPrezzo();
                 var NumeroOrdine = _ordineService.GetNumeroOrdine(); 
@@ -66,7 +68,11 @@ namespace Ristorante.Web.Controllers
             public IActionResult GetOrdine(GetOrdiniRequest request)
             {
                 int totalNum = 0;
-                var ordini = _ordineService.GetOrdini(request.PageNumber * request.PageSize, request.PageSize, out totalNum, request.dataInizio, request.dataFine, request.Email);
+                var claimsIdentity = this.User.Identity as ClaimsIdentity;
+                string idUtente = claimsIdentity.Claims
+                    .Where(w => w.Type == "Id").First().Value;
+                var ordini = _ordineService.GetOrdini(request.PageNumber * request.PageSize, request.PageSize,
+                out totalNum, request.DataInizio, request.DataFine, Int32.Parse(idUtente), request.IdUtenteDaVisualizzare);
                 var response = new GetOrdiniResponse();
                 var pageFounded = (totalNum / (decimal)request.PageSize);
                 response.NumeroPagine = (int)Math.Ceiling(pageFounded);

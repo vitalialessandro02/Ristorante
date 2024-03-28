@@ -11,7 +11,7 @@ namespace Ristorante.Application.Abstractions.Services
     {
         List<Ordine> GetOrdini();
 
-        List<Ordine> GetOrdini(int from, int num, out int totalNum, DateTime dataInizio, DateTime dataFine, string email);
+        List<Ordine> GetOrdini(int from, int num, out int totalNum, DateTime dataInizio, DateTime dataFine, int id, int idDaVisualizzare = -1);
 
         void AddOrdine(Ordine ordine, List<int> portate, List<int> quantita);
 

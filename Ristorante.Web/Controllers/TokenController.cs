@@ -3,6 +3,8 @@ using Ristorante.Application.Abstractions.Services;
 using Ristorante.Application.Factories;
 using Ristorante.Application.Models.Requests;
 using Ristorante.Application.Models.Responses;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 
 namespace Ristorante.Web.Controllers
@@ -20,7 +22,6 @@ namespace Ristorante.Web.Controllers
         [Route("create")]
         public IActionResult Create(CreateTokenRequest request)
         {
-            
             string token = _tokenService.CreateToken(request);
             return Ok(
                 ResponseFactory.WithSuccess(

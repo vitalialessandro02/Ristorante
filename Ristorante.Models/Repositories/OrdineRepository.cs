@@ -19,12 +19,11 @@ namespace Ristorante.Models.Repositories
         
         }
 
-        public List<Ordine> GetOrdine(int from, int num, out int totalNum,DateTime dataInizio, DateTime dataFine, string email)
+        public List<Ordine> GetOrdini(int from, int num, out int totalNum,DateTime dataInizio, DateTime dataFine, int idUtente, int idDaVisualizzare = -1)
         {
             var queryOrdine = _ctx.Ordini.AsQueryable();
             var queryIdUtente = _ctx.Utenti.AsQueryable();
             var queryUtente = _ctx.Utenti.AsQueryable();
-            int idUtente = queryIdUtente.Where(w => w.Email.Equals(email)).Select(w => w.Id).FirstOrDefault();
             var ruolo = queryUtente.Where(w => w.Id.Equals(idUtente)).Select(w => w.RuoloUtente).FirstOrDefault();
             
             if(ruolo.Equals(Ruolo.Cliente))
@@ -32,6 +31,10 @@ namespace Ristorante.Models.Repositories
                 queryOrdine = queryOrdine.Where(w => (w.DataOrdine >= dataInizio) && 
                 (w.DataOrdine <= dataFine) && (w.IdUtente.Equals(idUtente)));
             } 
+            if(ruolo.Equals(Ruolo.Amministratore) && idDaVisualizzare == -1)
+            {
+                queryOrdine = queryOrdine.Where(w => (w.DataOrdine >= dataInizio) && (w.DataOrdine <= dataFine) && (w.IdUtente.Equals(idDaVisualizzare)));
+            }
             else
             {
                 queryOrdine = queryOrdine.Where(w => (w.DataOrdine >= dataInizio) && (w.DataOrdine <= dataFine));

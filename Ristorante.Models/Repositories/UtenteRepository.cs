@@ -36,10 +36,10 @@ namespace Ristorante.Models.Repositories
                 .ToList();
         }
 
-        public int GetIdUtenteByEmail(string email)
+        public int GetIdUtenteByCredentials(string email, string password)
         {
             var query = _ctx.Utenti.AsQueryable();
-                query = query.Where(w => w.Email.Equals(email));
+                query = query.Where(w => w.Email.Equals(email) && w.Password.Equals(password));
             int result = query.Select(w => w.Id).FirstOrDefault();
             return result == 0 ? -1 : result;
         }

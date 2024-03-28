@@ -101,9 +101,9 @@ namespace Ristorante.Application.Services
             return new List<Ordine>();
         }
 
-        public List<Ordine> GetOrdini(int from, int num, out int totalNum, DateTime dataInizio, DateTime dataFine, string email)
+        public List<Ordine> GetOrdini(int from, int num, out int totalNum, DateTime dataInizio, DateTime dataFine, int idUtente, int idDaVisualizzare = -1)
         {
-            return _ordineRepository.GetOrdine(from, num, out totalNum, dataInizio, dataFine, email);
+            return _ordineRepository.GetOrdini(from, num, out totalNum, dataInizio, dataFine, idUtente, idDaVisualizzare);
         }
 
         public double GetPrezzo()

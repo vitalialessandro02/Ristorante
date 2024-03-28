@@ -23,14 +23,13 @@ namespace Ristorante.Application.Validators
                 .WithMessage("Il campo cognome è obbligatorio")
                 .NotNull()
                 .WithMessage("Il campo cognome non può essere nullo");
-            
+
             RuleFor(r => r.Email)
                 .NotEmpty()
                 .WithMessage("Il campo email è obbligatorio")
                 .NotNull()
-                .WithMessage("Il campo email non può essere nullo")
-                .Must(r => _utenteRepository.GetIdUtenteByEmail(r) == -1)
-                .WithMessage("Email già presente");
+                .WithMessage("Il campo email non può essere nullo");
+
             
             RuleFor(r => r.Password)
                 .NotEmpty()
@@ -42,6 +41,10 @@ namespace Ristorante.Application.Validators
                 .RegEx("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+{}\\[\\]:;<>,.?~\\\\-]).{6,}$"
                 , "Il campo password deve essere lungo almeno 6 caratteri e deve contenere almeno un carattere maiuscolo, uno minuscolo, un numero e un carattere speciale"
                 );
+            
+            RuleFor(r => r)
+                .Must(r => _utenteRepository.GetIdUtenteByCredentials(r.Email, r.Password) == -1)
+                .WithMessage("Utente già esistente");
         }
 
     }
